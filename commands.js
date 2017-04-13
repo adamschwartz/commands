@@ -47,7 +47,7 @@
           padding: .6em 1em;
           color: #fff;
           background: rgba(0, 0, 0, .8);
-          z-index: 5;
+          z-index: 1000;
         }
 
         commands > input::selection {
