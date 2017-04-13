@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Commands</title>
+  </head>
+  <body>
+    <script src="commands.js"></script>
+    <script>
+      const commands = new Commands({
+        allow: true,
+        launchKey: '~',
+        onCommand: (command) => { console.log(command) }
+      })
+
+      document.body.appendChild(commands.render().el)
+    </script>
+  </body>
+</html>
