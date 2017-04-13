@@ -3,7 +3,7 @@
   const enterKeyCode = 13
 
   const defaults = {
-    allow: false,
+    enabled: true,
     launchKey: '~',
     fontFamily: 'Monaco, monospace',
     onCommand: (command) => {}
@@ -66,6 +66,13 @@
         }
       })
 
+      document.body.addEventListener('keydown', (e) => {
+        if (e.keyCode === escapeKeyCode) {
+          this.emptyInput()
+          this.close()
+        }
+      })
+
       this.inputEl.addEventListener('keydown', (e) => {
         if (e.keyCode === escapeKeyCode) {
           this.emptyInput()
@@ -85,12 +92,23 @@
     }
 
     open() {
-      this.el.setAttribute('open', '')
-      this.inputEl.focus()
+      if (this.options.enabled) {
+        this.el.setAttribute('open', '')
+        this.inputEl.focus()
+      }
     }
 
     close() {
       this.el.removeAttribute('open')
+    }
+
+    enable() {
+      this.options.enabled = true
+    }
+
+    disable() {
+      this.options.enabled = false
+      this.close()
     }
 
     emptyInput() {

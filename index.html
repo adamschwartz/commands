@@ -2,17 +2,41 @@
 <html>
   <head>
     <title>Commands</title>
+
+    <style>
+      html {
+        margin: 20px;
+      }
+
+      button {
+        margin: 10px;
+      }
+    </style>
   </head>
+
   <body>
     <script src="commands.js"></script>
     <script>
       const commands = new Commands({
-        allow: true,
         launchKey: '~',
         onCommand: (command) => { console.log(command) }
       })
 
       document.body.appendChild(commands.render().el)
+
+      const buttonActions = ['enable', 'disable']
+
+      buttonActions.forEach((buttonAction) => {
+        const button = document.createElement('button')
+        button.textContent = buttonAction
+        button.style.textTransform = 'capitalize'
+
+        button.addEventListener('click', () => {
+          commands[buttonAction]()
+        })
+
+        document.body.appendChild(button)
+      })
     </script>
   </body>
 </html>
